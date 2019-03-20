@@ -1,6 +1,6 @@
-# y
+# Roy Vue-Travel-App
 
-> y
+> This is a personal project to learn Vue
 
 ## Build Setup
 
