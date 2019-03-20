@@ -1,4 +1,4 @@
-# Roy Vue-Travel-App
+# Roy's Vue-Travel-App
 
 > This is a personal project to learn Vue
 
