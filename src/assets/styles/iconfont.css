@@ -1,8 +1,8 @@
 @font-face {font-family: "iconfont";
-  src: url('iconfont/iconfont.eot?t=1553045212664'); /* IE9 */
-  src: url('iconfont/iconfont.eot?t=1553045212664#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont/iconfont.ttf?t=1553045212664') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('iconfont/iconfont.svg?t=1553045212664#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont/iconfont.eot?t=1553128249141'); /* IE9 */
+  src: url('iconfont/iconfont.eot?t=1553128249141#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont/iconfont.ttf?t=1553128249141') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont/iconfont.svg?t=1553128249141#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -19,6 +19,10 @@
 
 .icon-sousuo:before {
   content: "\e819";
+}
+
+.icon-xiangxia1:before {
+  content: "\e614";
 }
 
 .icon-fanhui:before {
