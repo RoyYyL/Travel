@@ -4,9 +4,11 @@
             <div class="iconfont back-icon">&#xe651;</div>
         </div>
         <div class="header-input"> <span class="iconfont">&#xe819;</span>输入城市/景点/游玩主题</div>
+        <router-link to="/city">
         <div class="header-right">
             {{city}}<span class="iconfont back-icon">&#xe614;</span>
         </div>
+        </router-link>
     </div>
 </template>
 
@@ -20,10 +22,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  @import '~styles/varibles.styl'
   .header
     display: flex
     line-height: .86rem
-    background : #00bcd4
+    background : $bgColor
     color: #fff
     .header-left
       width: .64rem
@@ -43,4 +46,5 @@ export default {
       width: 1.24rem
       float: right
       text-align: center
+      color:#fff
 </style>
