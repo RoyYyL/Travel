@@ -1,11 +1,62 @@
 <template>
-  <div class="search">
-    <input class="search-input" type="text" placeholder="请输入城市名或拼音" />
+  <div>
+    <div class="search">
+      <input v-model="keyWord" class="search-input" type="text" placeholder="请输入城市名或拼音" />
+    </div>
+    <div class="serach-content" ref="search" v-show="keyWord">
+      <ul>
+        <li class="serach-item border-bottom" v-for="item of list" :key="item.id">
+          {{item.name}}
+        </li>
+        <li  class="serach-item border-bottom" v-show="noSearchList">暂无匹配数据</li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
+import Bscroll from 'better-scroll'
 export default {
-  name: 'CitySearch'
+  props: {
+    cities: Object
+  },
+  name: 'CitySearch',
+  data () {
+    return {
+      keyWord: '',
+      list: [],
+      timer: null
+    }
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.search)
+  },
+  computed: {
+    noSearchList () {
+      return !this.list.length
+    }
+  },
+  watch: {
+    keyWord () {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      if (!this.keyWord) {
+        this.list = []
+        return
+      }
+      this.timer = setTimeout(() => {
+        let result = []
+        for (let i in this.cities) {
+          this.cities[i].forEach((value) => {
+            if (value.spell.indexOf(this.keyWord) > -1 || value.name.indexOf(this.keyWord) > -1) {
+              result.push(value)
+            }
+          })
+        }
+        this.list = result
+      }, 100)
+    }
+  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -23,4 +74,18 @@ export default {
       text-align: center
       color: #666
       padding: 0 .1rem
+  .serach-content
+    z-index: 1
+    overflow: hidden
+    position: absolute
+    left: 0
+    top: 1.4rem
+    right: 0
+    bottom: 0
+    background: #eee
+    .serach-item
+      background: #fff
+      line-height: .62rem
+      padding-left: .2rem
+      color: #666
 </style>
