@@ -5,21 +5,26 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">{{defaultCity}}</div>
+            <div class="button">{{this.$store.state.city}}</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
               <div class="button-list">
-          <div class="button-wrapper" v-for="item of hotCities" :key="item.id">
+          <div
+            class="button-wrapper"
+            v-for="item of hotCities"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">{{item.name}}</div>
           </div>
         </div>
       </div>
       <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
-        <div class="list-item" v-for="city of item" :key="city.id">
+        <div class="list-item" v-for="city of item" :key="city.id" @click="handleCityClick(city.name)">
           <div class="item border-bottom">{{city.name}}</div>
         </div>
       </div>
@@ -30,14 +35,23 @@
 import Bscorll from 'better-scroll'
 export default {
   props: {
-    defaultCity: String,
     hotCities: Array,
     cities: Object,
     changeAlphabet: String
   },
   name: 'CityList',
+  methods: {
+    handleCityClick (city) {
+      // 调用actions,actions调用mutations
+      // this.$store.dispatch('changeCity', city)
+      // 直接调用mutations
+      this.$store.commit('changeCity', city)
+      this.$router.push('./')
+    }
+  },
   mounted () {
-    this.scroll = new Bscorll(this.$refs.wrapper)
+    // 因为使用了batter-scroll 使得@click方法不执行，加上{ mouseWheel: true, click: true, tap: true }后生效
+    this.scroll = new Bscorll(this.$refs.wrapper, { mouseWheel: true, click: true, tap: true })
   },
   watch: {
     changeAlphabet (alph) {
@@ -59,7 +73,7 @@ export default {
   .list
     overflow: hidden
     position: absolute
-    top: 1.4rem
+    top: 1.58rem
     left: 0
     right: 0
     bottom: 0

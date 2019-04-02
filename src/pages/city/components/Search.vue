@@ -5,7 +5,7 @@
     </div>
     <div class="serach-content" ref="search" v-show="keyWord">
       <ul>
-        <li class="serach-item border-bottom" v-for="item of list" :key="item.id">
+        <li class="serach-item border-bottom" v-for="item of list" :key="item.id" @click="handleCityChange(item.name)">
           {{item.name}}
         </li>
         <li  class="serach-item border-bottom" v-show="noSearchList">暂无匹配数据</li>
@@ -27,8 +27,11 @@ export default {
       timer: null
     }
   },
-  mounted () {
-    this.scroll = new Bscroll(this.$refs.search)
+  methods: {
+    handleCityChange (city) {
+      this.$store.commit('changeCity', city)
+      this.$router.push('./')
+    }
   },
   computed: {
     noSearchList () {
@@ -56,6 +59,9 @@ export default {
         this.list = result
       }, 100)
     }
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.search, { mouseWheel: true, click: true, tap: true })
   }
 }
 </script>
@@ -79,7 +85,7 @@ export default {
     overflow: hidden
     position: absolute
     left: 0
-    top: 1.4rem
+    top: 1.58rem
     right: 0
     bottom: 0
     background: #eee

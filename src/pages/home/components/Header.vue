@@ -6,7 +6,7 @@
         <div class="header-input"> <span class="iconfont">&#xe819;</span>输入城市/景点/游玩主题</div>
         <router-link to="/city">
         <div class="header-right">
-            {{city}}<span class="iconfont back-icon">&#xe614;</span>
+            {{this.$store.state.city}}<span class="iconfont back-icon">&#xe614;</span>
         </div>
         </router-link>
     </div>
@@ -14,9 +14,9 @@
 
 <script>
 export default {
-  props: {
-    city: String
-  },
+  // props: {
+  //   city: String
+  // }, //用vuex代替传值
   name: 'HomeHeader'
 }
 </script>

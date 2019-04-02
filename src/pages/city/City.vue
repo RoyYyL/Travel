@@ -3,7 +3,6 @@
     <city-header></city-header>
     <city-search :cities="cities"></city-search>
     <city-list
-      :defaultCity="defaultCity"
       :hotCities="hotCities"
       :cities="cities"
       :changeAlphabet="changeAlphabet"
